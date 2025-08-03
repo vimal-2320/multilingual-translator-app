@@ -5,10 +5,10 @@ from langdetect import detect
 from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
 import json
 import os
-from datetime import datetime
+from transformers import AutoTokenizer, M2M100ForConditionalGeneration
 
 model_name = "facebook/m2m100_418M"
-tokenizer = M2M100Tokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = M2M100ForConditionalGeneration.from_pretrained(model_name)
 
 def extract_text_from_pdf(pdf_file):
@@ -45,7 +45,7 @@ def translate_to_multiple_languages(text, source_lang, target_langs):
 
 def save_translation_history(text, source_lang, translations):
     entry = {
-        "timestamp": datetime.now().isoformat(),
+    
         "source_lang": source_lang,
         "original_text": text[:1000],
         "translations": translations
